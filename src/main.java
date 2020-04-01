@@ -131,7 +131,7 @@ public class main {
         }else {
             System.out.println("                                                            "+totalTax);
         }
-        if(taxableIncome>500000) {
+        if(taxableIncome>5000000) {
             taxable = (taxableIncome - 5000000);
             int taxamount = (taxable) * 10 / 100;
 
