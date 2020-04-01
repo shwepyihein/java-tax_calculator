@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class main {
     public static void main(String[] args) {
-         int MonthlySalary,annualSalary,personalRelief,parentRelief,spouseRelief,childrenRelief,deductibles,taxableIncome,totalTax,monthlyTax;
+         int MonthlySalary,annualSalary,personalRelief,parentRelief,spouseRelief,childrenRelief,deductibles,taxableIncome,totalTax=0,monthlyTax;
          int months,twelvemonth,taxable;
          personalRelief=0;
          parentRelief=0;
@@ -112,20 +112,54 @@ public class main {
         int totalmoney=personalRelief+parentRelief+spouseRelief+childrenRelief+deductibles;
 
         taxableIncome=annualSalary-totalmoney;
-        if(taxableIncome<2000000){
-            totalTax=taxableIncome;
+
+
+        System.out.println("Descripton              Rate            Taxable             taxamount");
+        System.out.println("Up to 20 Lakh           0%            2000000                 0Ye");
+        totalTax=0;
+        if (taxableIncome>2000000 ){
+            taxable=taxableIncome-2000000;
+            int taxamount= (taxable)*5/100;
+
+            if(taxable>3000000){
+                System.out.println("20 Lakh - 50 Lakh       5%        3000000                "+df.format(150000));
+                totalTax+=150000;
+            }else {
+                System.out.println("20 Lakh - 50 Lakh       5%        "+df.format(taxable)+"     "+df.format(taxamount));
+                totalTax=taxamount;
+            }
+        }else {
+            System.out.println("                                                            "+totalTax);
         }
-        else if(taxableIncome>2000000 && taxableIncome< 5000000){
-            totalTax= (int) ((taxableIncome-2000000)*0.05);
+        if(taxableIncome>500000) {
+            taxable = (taxableIncome - 5000000);
+            int taxamount = (taxable) * 10 / 100;
+
+            if (taxable > 5000000) {
+                System.out.println("50 Lakh - 100 Lakh       10%        5,000,000         " + df.format(500000));
+                totalTax+=500000;
+            } else {
+                System.out.println("50 Lakh - 100 Lakh       10%        " + df.format(taxable) + "            " + df.format(taxamount));
+                totalTax+=taxamount;
+            }
+        }else {
+            System.out.println("                                                            "+totalTax);
         }
-        else if(taxableIncome>5000000 && taxableIncome< 10000000){
-            totalTax= (int) (150000+((taxableIncome-5000000)*0.1));
-        }
-        else if(taxableIncome>10000000 && taxableIncome< 20000000){
-            totalTax= (int) (150000+500000+((taxableIncome-1000000)*0.15));
-        }
-        else{
-            totalTax= (int) (150000+500000+1500000+((taxableIncome-1000000)*0.2));
+
+        if(taxableIncome>10000000){
+            taxable = (taxableIncome - 10000000);
+            int taxamount = (taxable) * 15 / 100;
+
+            if (taxable > 10000000) {
+                System.out.println("100 Lakh - 200 Lakh      15%        10,000,000           " + df.format(1500000.));
+                totalTax+=1500000;
+            } else {
+                System.out.println("100 Lakh - 200 Lakh      15%        " + df.format(taxable) + "        " + df.format(taxamount));
+                totalTax+=taxamount;
+            }
+        }else {
+            System.out.println("                                                            "+totalTax);
+
         }
 
 
@@ -134,46 +168,6 @@ public class main {
         System.out.println("Taxable Income                   "+df.format(taxableIncome));
         System.out.println("Total Tax                        "+df.format(totalTax));
         System.out.println("Monthly Tax                      "+df.format(monthlyTax));
-
-        System.out.println("Descripton              Rate            Taxable             taxamount");
-        System.out.println("Up to 20 Lakh           0%            2000000                 0");
-
-        if(taxableIncome>2000000 &&taxableIncome<5000000){
-            taxable=taxableIncome-2000000;
-            int taxamount= (taxable)*5/100;
-            if(taxable>3000000){
-                System.out.println("20 Lakh - 50 Lakh       5%        3000000                "+df.format(150000));
-            }else {
-                System.out.println("20 Lakh - 50 Lakh       5%        "+df.format(taxable)+"     "+df.format(taxamount));
-            }
-        }else {
-            System.out.println("                                                            "+totalTax);
-        }
-        if(taxableIncome>5000000 && taxableIncome<10000000) {
-            taxable = (taxableIncome - 5000000);
-            int taxamount = (taxable) * 10 / 100;
-
-            if (taxable > 5000000) {
-                System.out.println("20 Lakh - 50 Lakh       10%        5,000,000         " + df.format(500000));
-            } else {
-                System.out.println("20 Lakh - 50 Lakh       10%        " + df.format(taxable) + "            " + df.format(taxamount));
-            }
-        }else {
-            System.out.println("                                                            "+totalTax);
-        }
-
-        if(taxableIncome>10000000 && taxableIncome< 20000000){
-            taxable = (taxableIncome - 10000000);
-            int taxamount = (taxable) * 15 / 100;
-
-            if (taxable > 10000000) {
-                System.out.println("100 Lakh - 200 Lakh      15%        10,000,000           " + df.format(1500000.));
-            } else {
-                System.out.println("100 Lakh - 200 Lakh      15%        " + df.format(taxable) + "        " + df.format(taxamount));
-            }
-        }else {
-            System.out.println("                                                            "+totalTax);
-        }
 
     }
 }
